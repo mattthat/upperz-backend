@@ -1,0 +1,8 @@
+{
+	"hello-world": "hello world",
+	"invalid-credentials": "invalid credentials",
+	"general-failure": "general system failure",
+	"invalid-parameters": "parameters provided are not valid",
+	"account-not-found": "matching account was not found",
+	"unauthorized": "unauthorized"
+}
