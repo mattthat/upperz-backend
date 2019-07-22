@@ -51,7 +51,7 @@ export default class v1SpotPath extends BasePath {
         response,
         new SpotService(this.server.settings).updateSpot(request.body)
       );
-      this.server.scheduleSpotChecks();
+      this.server.rescheduleSpotCheck(request.params.id);
     } else {
       ResponseMapper.invalidParameters(response);
     }
@@ -59,11 +59,10 @@ export default class v1SpotPath extends BasePath {
 
   postSpot(request, response) {
     if (request.body && request.body.url && request.body.schedule) {
-      ResponseMapper.success(
-        response,
-        new SpotService(this.server.settings).createSpot(request.body)
-      );
-      this.server.scheduleSpotChecks();
+      const spot = new SpotService(this.server.settings)
+          .createSpot(request.body);
+      ResponseMapper.success(response, spot);
+      this.server.rescheduleSpotCheck(spot.id);
     } else {
       ResponseMapper.invalidParameters(response);
     }
@@ -75,7 +74,7 @@ export default class v1SpotPath extends BasePath {
         response,
         new SpotService(this.server.settings).removeSpot(request.params.id)
       );
-      this.server.scheduleSpotChecks();
+      this.server.rescheduleSpotCheck(request.params.id);
     } else {
       ResponseMapper.invalidParameters(response);
     }

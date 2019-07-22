@@ -4,6 +4,7 @@ import AboutPath from './paths/AboutPath';
 import v1SpotPath from './paths/v1/v1SpotPath';
 import SpotCheckSchedulingService from './services/SpotCheckSchedulingService';
 import Cors from 'cors';
+import SpotService from './services/SpotService';
 
 export default class Server extends BaseServer {
   constructor(express, i18n, settings) {
@@ -33,5 +34,10 @@ export default class Server extends BaseServer {
 
   scheduleSpotChecks() {
     this.scheduler.scheduleSpotChecks();
+  }
+
+  rescheduleSpotCheck(id) {
+    const spot = new SpotService(this.settings).getSpotById(id);
+    this.scheduler.scheduleSpotCheck(spot);
   }
 }
