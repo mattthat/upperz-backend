@@ -1,10 +1,10 @@
+import Cors from 'cors';
 import BaseServer from 'portico/lib/Server';
 import HealthPath from 'portico/lib/paths/HealthPath';
 import AboutPath from './paths/AboutPath';
 import v1SpotPath from './paths/v1/v1SpotPath';
-import SpotCheckSchedulingService from './services/SpotCheckSchedulingService';
-import Cors from 'cors';
 import SpotService from './services/SpotService';
+import SpotCheckSchedulingService from './services/SpotCheckSchedulingService';
 
 export default class Server extends BaseServer {
   constructor(express, i18n, settings) {
@@ -14,6 +14,10 @@ export default class Server extends BaseServer {
 
   registerMiddleware() {
     super.registerMiddleware();
+    this.registerCorsMiddleware();
+  }
+
+  registerCorsMiddleware() {
     this.express.use(
       Cors({
         origin: '*',
