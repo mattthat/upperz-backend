@@ -1,6 +1,7 @@
-import BaseService from 'portico/lib/services/BaseService';
-import SpotService from './SpotService';
 import Cron from 'node-cron';
+import BaseService from 'portico/lib/services/BaseService';
+import LoggingPart from 'portico/lib/parts/LoggingPart';
+import SpotService from './SpotService';
 
 export default class SpotCheckSchedulingService extends BaseService {
   constructor(settings) {
@@ -20,14 +21,21 @@ export default class SpotCheckSchedulingService extends BaseService {
     if (this.tasks[spot.id]) {
       this.tasks[spot.id].destroy();
       if (this.settings.runtime.debug)
-        console.log(`Destroying task for ${spot.id}`);
+        LoggingPart.output('Destroying task', {
+          id: spot.id,
+          url: spot.url
+        });
     }
   }
 
   scheduleSpotCheck(spot) {
     if (spot.url && spot.schedule && Cron.validate(spot.schedule)) {
       this.destroyScheduledSpotCheck(spot);
-      if (this.settings.runtime.debug) console.log(`Scheduling ${spot.id}`);
+      if (this.settings.runtime.debug)
+        LoggingPart.output('Scheduling', {
+          id: spot.id,
+          url: spot.url
+        });
       this.tasks[spot.id] = Cron.schedule(
         spot.schedule,
         () => {
@@ -37,7 +45,10 @@ export default class SpotCheckSchedulingService extends BaseService {
       );
     } else {
       if (this.settings.runtime.debug)
-        console.log(`${spot.id} could not be scheduled`);
+        LoggingPart.output('Failed to schedule', {
+          id: spot.id,
+          url: spot.url
+        });
     }
   }
 }

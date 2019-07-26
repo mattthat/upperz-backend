@@ -1,4 +1,5 @@
 import BaseService from 'portico/lib/services/BaseService';
+import LoggingPart from 'portico/lib/parts/LoggingPart';
 import RuntimeService from 'portico/lib/services/RuntimeService';
 import uuidv4 from 'uuid/v4';
 import Fetch from 'node-fetch';
@@ -23,7 +24,10 @@ export default class SpotService extends BaseService {
   checkSpot(spotId) {
     let spot = this.getSpotById(spotId);
     if (this.settings.runtime.debug)
-      console.log(`Spot checking ${spot.id} @ ${spot.url}`);
+      LoggingPart.output('Spot checking', {
+        id: spot.id,
+        url: spot.url
+      });
     Fetch(spot.url)
       .then(response => {
         response.text().then(text => {

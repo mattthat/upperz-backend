@@ -1,7 +1,7 @@
-import PublicRouter from 'portico/lib/routers/PublicRouter';
 import BasePath from 'portico/lib/paths/BasePath';
-import ResponseMapper from 'portico/lib/mappers/ResponseMapper';
+import PublicRouter from 'portico/lib/routers/PublicRouter';
 import SpotService from '../../services/SpotService';
+import ResponseMapper from 'portico/lib/mappers/ResponseMapper';
 import SpotCheckSchedulingService from '../../services/SpotCheckSchedulingService';
 
 export default class v1SpotPath extends BasePath {
@@ -59,8 +59,9 @@ export default class v1SpotPath extends BasePath {
 
   postSpot(request, response) {
     if (request.body && request.body.url && request.body.schedule) {
-      const spot = new SpotService(this.server.settings)
-          .createSpot(request.body);
+      const spot = new SpotService(this.server.settings).createSpot(
+        request.body
+      );
       ResponseMapper.success(response, spot);
       this.server.rescheduleSpotCheck(spot.id);
     } else {
