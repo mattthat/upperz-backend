@@ -1,4 +1,4 @@
-FROM node:jessie
+FROM node:lts-jessie-slim
 EXPOSE 8080/tcp
 
 RUN mkdir -p /usr/local/app/release
@@ -9,4 +9,4 @@ COPY release/ /usr/local/app/release/
 RUN npm install
 
 WORKDIR /usr/local/app/release
-CMD [ "node", "api-server.js" ]
+CMD [ "node", "upperz-server.js" ]

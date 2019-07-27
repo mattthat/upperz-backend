@@ -1,6 +1,6 @@
 {
   "name": "upperz-backend",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "description": "",
   "main": "",
@@ -23,7 +23,7 @@
     "transpile": "babel src --out-dir release",
     "clean": "rimraf release && npm-run-all -s clean:docker-image",
     "build": "npm-run-all -s build:api build:docker-image",
-    "run:api": "cd release && node api-server.js",
+    "run:api": "cd release && node upperz-server.js",
     "build:api": "npm-run-all transpile copy:settings generate:ink",
     "build:docker-image": "docker build . -t tadalabs/upperz-backend:latest",
     "copy:settings": "cp src/settings/* release/settings",
