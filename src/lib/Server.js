@@ -1,3 +1,4 @@
+import Cors from 'cors';
 import Express from 'express';
 import BaseServer from 'portico/lib/Server';
 import HealthPath from './paths/HealthPath';
@@ -15,12 +16,21 @@ export default class Server extends BaseServer {
   registerMiddleware() {
     super.registerMiddleware();
     this.registerStaticContent();
+    this.registerCorsMiddleware();
   }
 
   registerStaticContent() {
     this.express.use('/', Express.static('upperz'));
   }
 
+  registerCorsMiddleware() {
+    this.express.use(
+      Cors({
+        origin: 'http://localhost:3000',
+        optionsSuccessStatus: 200
+      })
+    );
+  }
   registerUnVersionPaths() {
     this.registerPath(new HealthPath(this));
     this.registerPath(new AboutPath(this));
