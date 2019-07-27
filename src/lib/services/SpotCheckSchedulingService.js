@@ -29,7 +29,13 @@ export default class SpotCheckSchedulingService extends BaseService {
   }
 
   scheduleSpotCheck(spot) {
-    if (spot.url && spot.schedule && Cron.validate(spot.schedule)) {
+    if (
+      spot &&
+      spot.id &&
+      spot.url &&
+      spot.schedule &&
+      Cron.validate(spot.schedule)
+    ) {
       this.destroyScheduledSpotCheck(spot);
       if (this.settings.runtime.debug)
         LoggingPart.output('Scheduling', {
