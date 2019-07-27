@@ -71,7 +71,7 @@ export default class SpotService extends BaseService {
     let spots = this.spots();
     item.id = uuidv4();
     item.status = {
-      code: '',
+      code: 0,
       error: '',
       performed: new Date().toISOString()
     };
@@ -82,6 +82,13 @@ export default class SpotService extends BaseService {
 
   updateSpot(item) {
     let spots = this.spots();
+    if (spots[item.id].url !== item.url) {
+      item.status = {
+        code: 0,
+        error: '',
+        performed: new Date().toISOString()
+      };
+    }
     spots[item.id] = item;
     RuntimeService.writeJSFile(SpotService.JSON, spots);
     return item;

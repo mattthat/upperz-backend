@@ -1,9 +1,8 @@
 {
   "name": "upperz-backend",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "private": true,
-  "description": "",
-  "main": "",
+  "description": "Upperz uptime monitor back-end: Node.JS with Express",
   "engines": {
     "node": ">=10.0"
   },
@@ -12,13 +11,6 @@
     "name": "Matt That",
     "url": "http://matt-that.com"
   },
-  "contributors": [
-    {
-      "email": "matt.that@gmail.com",
-      "name": "Matt That",
-      "url": "http://matt-that.com"
-    }
-  ],
   "scripts": {
     "transpile": "babel src --out-dir release",
     "clean": "rimraf release && npm-run-all -s clean:docker-image",
