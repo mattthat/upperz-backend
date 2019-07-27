@@ -1,6 +1,6 @@
 import Express from 'express';
 import BaseServer from 'portico/lib/Server';
-import HealthPath from 'portico/lib/paths/HealthPath';
+import HealthPath from './paths/HealthPath';
 import AboutPath from './paths/AboutPath';
 import v1SpotPath from './paths/v1/v1SpotPath';
 import SpotService from './services/SpotService';

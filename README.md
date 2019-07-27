@@ -14,7 +14,7 @@ $ npm run run:api
 ### testing
 
 ```
-$ curl -s http://localhost:8080/ | jq
+$ curl -s http://localhost:8080/health | jq
   {
     "status": "OK"
   }
