@@ -44,4 +44,8 @@ export default class Server extends BaseServer {
     const spot = new SpotService(this.settings).getSpotById(id);
     this.scheduler.scheduleSpotCheck(spot);
   }
+  unscheduleSpotCheck(id) {
+    const spot = new SpotService(this.settings).getSpotById(id);
+    this.scheduler.destroyScheduledSpotCheck(spot);
+  }
 }

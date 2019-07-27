@@ -71,11 +71,11 @@ export default class v1SpotPath extends BasePath {
 
   deleteSpot(request, response) {
     if (request.params.id) {
+      this.server.unscheduleSpotCheck(request.params.id);
       ResponseMapper.success(
         response,
         new SpotService(this.server.settings).removeSpot(request.params.id)
       );
-      this.server.rescheduleSpotCheck(request.params.id);
     } else {
       ResponseMapper.invalidParameters(response);
     }
