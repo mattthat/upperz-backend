@@ -1,11 +1,8 @@
 {
   "name": "upperz-backend",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "private": true,
   "description": "Upperz uptime monitor back-end: Node.JS with Express",
-  "engines": {
-    "node": ">=10.0"
-  },
   "author": {
     "email": "matt.that@gmail.com",
     "name": "Matt That",
@@ -26,26 +23,34 @@
     "lint-fix": "node_modules/eslint/bin/eslint.js src --fix"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/node": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/register": "^7.4.4",
-    "eslint": "^6.0.1",
-    "eslint-config-prettier": "^6.0.0",
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/node": "^7.19.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.9.0",
+    "babel-register": "^6.26.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
     "eslint-loader": "^2.1.2",
-    "eslint-plugin-prettier": "^3.1.0",
-    "prettier": "^1.18.2",
-    "npm-run-all": "^4.1.5"
+    "eslint-plugin-prettier": "^3.1.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^1.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "i18n": "^0.8.3",
+    "i18n": "^0.8.5",
     "node-cron": "^2.0.3",
     "node-fetch": "^2.6.0",
     "portico": "file:./portico-0.0.1.tgz",
-    "uuid": "^3.3.2"
+    "uuid": "^3.4.0"
+  },
+  "overrides": {
+    "glob-parent": "6.0.2"
+  },
+  "engines": {
+    "npm": ">=8.3.0",
+    "node": ">=10.0"
   }
 }
